@@ -4,16 +4,30 @@ from asaase_sense.ingestion.countries import get_countries, filter_african_count
 
 def get_locations(country_code: str) -> list[dict]:
 
+    locations = []
+    page = 1
+
     with get_client() as client:
-        response = client.get(
-            "/locations", params={"iso": country_code, "limit": 1000, "page": 1}
-        )
+        while True:
+            response = client.get("/locations",params={"iso": country_code,"limit": 1000,"page": page})
 
-        response.raise_for_status()
+            response.raise_for_status()
 
-        data = response.json()
+            data = response.json()
 
-    return data["results"]
+            results = data["results"]
+
+            if not results:
+                break
+
+            locations.extend(results)
+
+            if len(locations) >= data["meta"]["found"]:
+                break
+
+            page += 1
+
+    return locations
 
 
 def get_african_locations() -> list[dict]:
