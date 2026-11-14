@@ -1,4 +1,6 @@
 
+import time
+
 from asaase_sense.ingestion.client import get_client
 from asaase_sense.ingestion.locations import get_african_locations
 
@@ -11,7 +13,17 @@ def get_sensors(location_id: int) -> list[dict]:
     with get_client() as client:
 
         while True:
-            response = client.get(f"/locations/{location_id}/sensors",params={"limit": 1000,"page": page})
+
+            # Keep requests below OpenAQ's rate limit.
+            time.sleep(1.1)
+
+            response = client.get(
+                f"/locations/{location_id}/sensors",
+                params={
+                    "limit": 1000,
+                    "page": page,
+                },
+            )
 
             response.raise_for_status()
 
@@ -40,7 +52,6 @@ def get_african_sensors() -> list[dict]:
 
     for location in locations:
         sensors = get_sensors(location["id"])
-
         all_sensors.extend(sensors)
 
     return all_sensors
