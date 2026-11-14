@@ -1,5 +1,6 @@
 # Environment variables and secrets
 .env
+.env.*
 
 # Jupyter
 .ipynb_checkpoints/
@@ -9,5 +10,10 @@ __pycache__/
 *.py[cod]
 .venv/
 
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+
 # Raw and generated data
 data/raw/
+data/processed/
