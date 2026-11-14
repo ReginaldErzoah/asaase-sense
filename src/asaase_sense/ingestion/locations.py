@@ -1,0 +1,1 @@
+from asaase_sense.ingestion.client import get_client
