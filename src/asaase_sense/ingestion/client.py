@@ -11,3 +11,4 @@ if not OPENAQ_API_KEY:
     raise ValueError("OPENAQ_API_KEY is missing. Check your .env file")
 
 BASE_URL = "https://api.openaq.org/v3"
+TIMEOUT = 30.0
