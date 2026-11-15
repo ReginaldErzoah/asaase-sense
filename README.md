@@ -107,4 +107,4 @@ For more information about the project:
 
 The long-term vision is to develop Asaase Sense into a dependable environmental data infrastructure platform that makes environmental observations easier to access, understand, validate, and use.
 
-Beyond collecting data, 
+Beyond collecting data, the goal
