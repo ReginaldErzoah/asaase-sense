@@ -19,7 +19,6 @@ For air quality specifically, data can be:
 
 The initial focus is air quality across Africa, using [OpenAQ](https://openaq.org/) as our first data source.
 
-*Asaase*
 
 ## Project Objectives
 
