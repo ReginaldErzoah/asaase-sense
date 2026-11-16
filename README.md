@@ -19,7 +19,7 @@ For air quality specifically, data can be:
 
 The initial focus is air quality across Africa, using [OpenAQ](https://openaq.org/) as our first data source.
 
-*Asaase* means *Earth* in Akan.
+*Asaase* means *Earth* in 
 
 ## Project Objectives
 
