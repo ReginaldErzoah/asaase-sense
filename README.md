@@ -94,7 +94,7 @@ Additional technologies for orchestration, databases, data validation, testing, 
 
 ## Project Documentation
 
-For more information
+For more information about
 
 - [Project Overview](docs/project-overview.md)
 - [System Architecture](docs/architecture.md)
