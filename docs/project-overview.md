@@ -34,7 +34,7 @@ The first stage focuses on reference data:
 
 The project currently saves these records as raw JSONL files.
 
-The project does not** claim to represent every air-quality monitoring station in Africa. Its coverage depends on the data OpenAQ ingests and makes available through its API.
+The project does not* claim to represent every air-quality monitoring station in Africa. Its coverage depends on the data OpenAQ ingests and makes available through its API.
 
 ## Current development status
 
