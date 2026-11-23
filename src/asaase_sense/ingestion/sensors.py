@@ -1,51 +1,44 @@
 import time
 
-import httpx
-
 from asaase_sense.ingestion.client import get_client
 from asaase_sense.ingestion.locations import get_african_locations
 
 
-REQUEST_DELAY = 1.1
-PAGE_LIMIT = 1000
-
-
-def get_sensors(
-    client: httpx.Client,
-    location_id: int,
-) -> list[dict]:
+def get_sensors(location_id: int) -> list[dict]:
 
     sensors = []
     page = 1
 
-    while True:
+    with get_client() as client:
 
-        time.sleep(REQUEST_DELAY)
+        while True:
 
-        response = client.get(
-            f"/locations/{location_id}/sensors",
-            params={
-                "limit": PAGE_LIMIT,
-                "page": page,
-            },
-        )
+            # Keep requests below OpenAQ's rate limit.
+            time.sleep(1.1)
 
-        response.raise_for_status()
+            response = client.get(
+                f"/locations/{location_id}/sensors",
+                params={
+                    "limit": 1000,
+                    "page": page,
+                },
+            )
 
-        data = response.json()
-        results = data["results"]
+            response.raise_for_status()
 
-        if not results:
-            break
+            data = response.json()
 
-        sensors.extend(results)
+            results = data["results"]
 
-        found = data["meta"]["found"]
+            if not results:
+                break
 
-        if len(sensors) >= found:
-            break
+            sensors.extend(results)
 
-        page += 1
+            if len(sensors) >= data["meta"]["found"]:
+                break
+
+            page += 1
 
     return sensors
 
@@ -54,64 +47,10 @@ def get_african_sensors() -> list[dict]:
 
     locations = get_african_locations()
 
-    pm25_sensors = []
-    failed_locations = []
+    all_sensors = []
 
-    total_locations = len(locations)
+    for location in locations:
+        sensors = get_sensors(location["id"])
+        all_sensors.extend(sensors)
 
-    with get_client() as client:
-
-        for index, location in enumerate(locations, start=1):
-
-            location_id = location["id"]
-
-            print(
-                f"[{index}/{total_locations}] "
-                f"Processing location {location_id}..."
-            )
-
-            try:
-
-                sensors = get_sensors(
-                    client=client,
-                    location_id=location_id,
-                )
-
-                location_pm25 = [
-                    sensor
-                    for sensor in sensors
-                    if sensor.get("parameter", {}).get("name") == "pm25"
-                ]
-
-                pm25_sensors.extend(location_pm25)
-
-                print(
-                    f"    Found {len(location_pm25)} PM2.5 sensors."
-                )
-
-            except httpx.HTTPError as error:
-
-                failed_locations.append(
-                    {
-                        "location_id": location_id,
-                        "error": str(error),
-                    }
-                )
-
-                print(
-                    f"    Failed to retrieve sensors: {error}"
-                )
-
-    print("\nSENSOR EXTRACTION SUMMARY")
-    print("-------------------------")
-    print(f"Locations processed: {total_locations}")
-    print(f"PM2.5 sensors found: {len(pm25_sensors)}")
-    print(f"Failed locations: {len(failed_locations)}")
-
-    if failed_locations:
-        print("\nFailed location IDs:")
-
-        for failure in failed_locations:
-            print(f"    {failure['location_id']}")
-
-    return pm25_sensors
+    return all_sensors
