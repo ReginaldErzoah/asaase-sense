@@ -48,10 +48,15 @@ def get_african_sensors() -> list[dict]:
 
     locations = get_african_locations()
 
-    all_sensors = []
+    pm25_sensors = []
 
     for location in locations:
         sensors = get_sensors(location["id"])
-        all_sensors.extend(sensors)
 
-    return all_sensors
+        for sensor in sensors:
+            parameter = sensor.get("parameter", {})
+
+            if parameter.get("name") == "pm25":
+                pm25_sensors.append(sensor)
+
+    return pm25_sensors
