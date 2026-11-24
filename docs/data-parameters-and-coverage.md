@@ -9,7 +9,7 @@ It is intended to make two things clear:
 1. What kinds of environmental measurements the sensors in the current extraction are configured to provide.
 2. How much of Africa is represented in the OpenAQ data currently accessible to Asaase Sense.
 
-This document describes the **sensor metadata ingestion stage**. It does not mean that historical measurement observations for these parameters have already been collected.
+This document describes the *sensor metadata ingestion stage**. It does not mean that historical measurement observations for these parameters have already been collected.
 
 ## 2. Current data collection status
 
