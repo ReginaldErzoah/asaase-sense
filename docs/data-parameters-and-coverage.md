@@ -27,7 +27,7 @@ The `data/raw/sensors.jsonl` file contains sensor metadata. Each record describe
 
 These fields describe the sensor and its reported history. They are not a substitute for the individual timestamped observations that will eventually be collected from the measurements endpoint.
 
-Current implementation status:** countries, locations, and sensors are being ingested and stored as raw JSONL records. Historical measurement ingestion and measurement-level validation are future stages.
+Current implementation status:* countries, locations, and sensors are being ingested and stored as raw JSONL records. Historical measurement ingestion and measurement-level validation are future stages.
 
 ## 3. Parameters observed in the current sensor sample
 
