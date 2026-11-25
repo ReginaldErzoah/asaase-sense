@@ -79,7 +79,7 @@ Temperature is a meteorological measurement rather than a pollutant concentratio
 
 Asaase Sense uses an African country-code reference list to identify African countries represented in OpenAQ's country catalogue. It then retrieves monitoring locations for the African countries returned by the API and retrieves sensors associated with those locations.
 
-OpenAQ coverage is not equivalent to complete African monitoring coverage. The API exposes data that OpenAQ has discovered, received, and made publicly available. A country or location missing from the API response should therefore be described as *not represented in the retrieved OpenAQ catalogue**, not as a place with no air-quality monitoring.
+OpenAQ coverage is not equivalent to complete African monitoring coverage. The API exposes data that OpenAQ has discovered, received, and made publicly available. A country or location missing from the API response should therefore be described as **not represented in the retrieved OpenAQ catalogue**, not as a place with no air-quality monitoring.
 
 ### 5.1 Recorded extraction snapshot
 
