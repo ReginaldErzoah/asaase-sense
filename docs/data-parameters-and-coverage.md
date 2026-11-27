@@ -106,7 +106,7 @@ The figures above mean that, during the recorded run:
 - Sensor retrieval succeeded for 843 locations and failed for 17 locations.
 - The extraction returned 3,440 sensor records.
 
-They do not** mean that:
+They do not* mean that:
 
 - Only 35 African countries have air-quality monitoring stations.
 - The 860 locations represent every monitoring station in those countries.
