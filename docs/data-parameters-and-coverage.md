@@ -201,4 +201,4 @@ Update this document when:
 - A new coverage run produces updated country, location, or sensor counts.
 - The ingestion scope changes beyond the current African OpenAQ source.
 
-Always distinguish between **parameters represented in sensor metadata**, **parameters selected for measurement ingestion**, and **parameters for which historical observations have actually been coll
+Always distinguish between **parameters represented in sensor metadata**, **parameters selected for measurement ingestion**, and **parameters for which historical observations have actually been
